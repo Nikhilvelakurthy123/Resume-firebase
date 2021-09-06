@@ -1,13 +1,24 @@
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom'
+
+
 import './App.css';
 
 function App() {
+
+
+  useEffect(() => {
+    document.body.style.backgroundColor = "#282c34"
+
+  }, [])
+
   const schoolImage = "https://www.edustoke.com/assets/uploads-new/nagarjuna-high-school-1495169986-1.png"
   const interImage = "https://hyderabadboss.com/wp-content/uploads/2016/10/Narayana-Junior-College.jpg"
   const engineeringImage = "https://4.bp.blogspot.com/-MJf6pZABTPY/Wju-yqeuU-I/AAAAAAAAArE/pkyJJBqPdgsLVnvsxyn1xtJytrqCRH8KgCLcBGAs/s1600/logo%2Bnew.jpg"
   const userPicture = "/Nikhil picture.jpg"
   return (
-    <div className="container-fluid w-75 resume-block" >
-      <div className="card " >
+    <div className="container-fluid w-75 resume-block p-4 mb-4" >
+      <div className="card" >
         <div style={{ overflow: "hidden" }}>
           <img src={userPicture} alt="User" style={{ padding: "20px", marginLeft: "20px", height: "250px", width: "180px", float: "left" }} />
           <h5 className="name p-2" style={{ float: "right", display: "block" }} >Velakurthy Nikhil</h5>
@@ -151,8 +162,50 @@ function App() {
 
               </div>
             </div>
+
+
+
+            <div>
+              <div className="row">
+                <h4>React Samples</h4>
+                <div className="d-flex">
+                  <div className="card col">
+
+                    <button className="card-title btn btn-primary">
+                      <Link to="/expenseTracker" className="a">ExpenseTrackerComponent</Link>
+                    </button>
+                  </div>
+                  <div className="card col">
+                    <button className="card-title btn btn-primary">
+                      <Link to="/calc" className="a">Calculator</Link>
+                    </button>
+                  </div>
+                  <div className="card col">
+                    <button className="card-title btn btn-primary">
+                      <Link to="/TictactoeComponent" className="a">Tictactoe</Link>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+              <div className="row">
+                <div className="d-flex">
+                  <div className="card col">
+                    <button className="card-title btn btn-primary">
+                      <Link to="/weatherapp" className="a">Weather App</Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
           </div>
         </div>
+
+
+
       </div>
     </div >
   );
