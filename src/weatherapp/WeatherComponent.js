@@ -59,22 +59,22 @@ export default class WeatherComponent extends Component {
 
         axios.get(weatherURL, { responseType: 'json' })
             .then(res => {
-                console.log(res.data)
+                //console.log(res.data)
                 this.setState({
-                    // data: new Date(),
+                    data: new Date().toString(),
                     feelsLike_c: res.data.main.feels_like,
                     humidity: res.data.main.humidity,
                     coulds: res.data.weather[0].description,
                     temp_c: res.data.main.temp,
                     name: res.data.name,
                     inputData: res.data.name,
-                    region: JSON.stringify(res.data.location.region),
+                    // region: JSON.stringify(res.data.location.region),
                     country: res.data.sys.country,
                     // image: "http://" + JSON.stringify(res.data.current.condition.icon).toString().substring(3).replace(/['"]+/g, ''),
                     error: '',
                 })
                 // console.log(this.state.data)
-                console.log(res.data)
+                // console.log(res.data)
                 // console.log(res.data.main)
                 // console.log(res.data.main.feels_like)
             })
