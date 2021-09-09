@@ -1,6 +1,9 @@
 .body{
     color:#dfe6ec;
 }
+body{
+  color:#dfe6ec;
+}
 .name{
   justify-content: right;
   text-align: right;
