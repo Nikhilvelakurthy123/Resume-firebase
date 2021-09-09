@@ -188,7 +188,7 @@ function App() {
 
                 </div>
               </div>
-              <div className="row">
+              {/* <div className="row">
                 <div className="d-flex">
                   <div className="card col">
                     <button className="card-title btn btn-primary">
@@ -196,7 +196,7 @@ function App() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
             </div>
 

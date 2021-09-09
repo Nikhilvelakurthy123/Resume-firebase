@@ -4,7 +4,7 @@ import App from './App.js'
 import ExpenseTrackerComponent from './practice/ExpenseTrackerComponent'
 import CalcComponent from './practice/CalculatorComponent'
 import TictactoeComponent from './practice/TictactoeComponent'
-import WeatherIndexComponent from './weatherapp/WeatherIndexComponent.js'
+// import WeatherIndexComponent from './weatherapp/WeatherIndexComponent.js'
 
 export default function RouterComponent() {
     return (
@@ -23,7 +23,7 @@ export default function RouterComponent() {
                     <Route exact path="/TictactoeComponent">
                         <TictactoeComponent />
                     </Route>
-                    <Route exact path="/weatherapp"><WeatherIndexComponent /></Route>
+                    {/* <Route exact path="/weatherapp"><WeatherIndexComponent /></Route> */}
                 </Switch>
             </Router>
         </div>
