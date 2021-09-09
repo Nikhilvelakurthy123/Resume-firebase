@@ -12,8 +12,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(200,26,78);
-  color: #b5babf;
+  color:#dfe6ec;
   margin: auto;
+}
+.body{
+  color:#dfe6ec;
 }
 
 .a{
