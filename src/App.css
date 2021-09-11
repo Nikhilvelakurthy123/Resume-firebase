@@ -1,20 +1,14 @@
-.body{
-    color:#dfe6ec;
-}
-body{
-  color:#dfe6ec;
-}
 .name{
   justify-content: right;
   text-align: right;
   padding: 20px;
-  color: rgb(144, 155, 160);
+  color:#000000;
   font-size: 4rem;
 }
 
 .resume-block{
   margin-top: 2.5%;
-  background-color: #282c34;
+  background-color: #ffffff;
 }
 
 .float-right{
@@ -23,15 +17,20 @@ body{
   float: right;
 }
 
-.card{
-  background-color: rgb(116, 49, 204);
-  
+.card, .card-body {
+  background-color: rgb(255, 255, 255);
+  border: 0px solid rgba(255, 255, 255, 0.125);  
 }
+
 .card-title{
-  color: #b5babf;
+  color: #000000;
 }
 
 .a{
   text-decoration: none;
-  color: white;
+  color: rgb(0, 0, 0);
+}
+.card-img, .card-img-top, .card-img-bottom {
+  width: 50%;
+  height: 200px;
 }
