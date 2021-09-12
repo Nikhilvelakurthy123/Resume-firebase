@@ -5,6 +5,7 @@ import RouterComponent from './RouterComponent';
 import reportWebVitals from './reportWebVitals';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 ReactDOM.render(
   <React.StrictMode>

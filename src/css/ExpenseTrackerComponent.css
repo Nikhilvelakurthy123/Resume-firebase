@@ -1,0 +1,36 @@
+/* .body-color{
+    background-color: white;
+} */
+
+.card, .card-body {
+     background-color: transparent;
+     /* border: 0 solid transparent; */
+     /* height: 0px; */
+}
+
+.btn,button,.button{
+    font-size: 1rem;
+}
+
+.expenseTracker-button {
+    font-size: 1rem;
+}
+.delete-expenseRecord{
+    cursor: pointer;
+}
+
+.col-6.border-end{
+ height: 90% ;
+ /* margin-top: 50%; */
+ /* al: center; */
+ /* align-self: center; */
+}
+
+.zoom{
+        zoom: 0.90;
+    
+}
+    .zoom-moz {
+        -moz-transform: scale(2);
+        -moz-transform-origin: 0 0;
+    }

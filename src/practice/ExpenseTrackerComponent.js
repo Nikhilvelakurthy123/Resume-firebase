@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import './ExpenseTrackerComponent.css'
+import '../css/ExpenseTrackerComponent.css'
 
 function income(amount) {
     return (
-        <div className="card border-success mt-2 rounded-end me-3" style={{ height: "60px" }}>
+        <div className="card border-1 border-success mt-2 rounded-end me-3" style={{ height: "60px" }}>
             <div className="card-body ">
                 <div className="row">
                     <div className="col-md-9">
@@ -21,7 +21,7 @@ function income(amount) {
 
 function expenseAmount(amount) {
     return (
-        <div className="card border-danger mt-1 mb-2 rounded-end me-3" style={{ height: "60px" }}>
+        <div className="card border-1 border-danger mt-1 mb-2 rounded-end me-3" style={{ height: "60px" }}>
             <div className="card-body ">
                 <div className="row">
                     <div className="col-md-9">
@@ -53,11 +53,22 @@ export default function ExpenseTrackerComponent() {
     const [txHistory, setTxhistory] = useState([])
     const [count, setCount] = useState(0)
     const [removeArrayIndex, setRemoveArrayIndex] = useState(0);
+    const [expenseOverAmountMessage, setExpenseOverAmountMessage] = useState(false);
 
     var historyDummy = []
 
+    const moneyOverload = () => {
+        if (text.toString() === "Expense" && (Number(balance) < 0 || Number(balance) - Number(expense) < 0)) {
+            alert("overload")
+            setExpenseOverAmountMessage(true)
+        }
+        else {
+            setExpenseOverAmountMessage(false)
+        }
+    };
+
     const handleSubmit = () => {
-        // flag = true
+        moneyOverload();
         if (text.toString() === "Expense" && Number(balance) > 0 && Number(balance) - Number(expense) >= 0) {
             // ReactDOM.render(expenseAmount(expense), document.getElementById("history"));
             setExpenseHeader(expenseHeader + Number(expense));
@@ -65,7 +76,7 @@ export default function ExpenseTrackerComponent() {
             setCount(count + 1);
             //setTxhistory.push({ id: count, type: "Expense", amount: expense })
             historyDummy.push({ id: count, type: "Expense", amount: expense })
-            // setTxhistory(txHistory => [...txHistory, historyDummy[0]])//IMP
+            setTxhistory(txHistory => [...txHistory, historyDummy[0]])//IMP
         }
         else if (text.toString() === "Income") {
             //dummy = (income(expense));
@@ -76,20 +87,20 @@ export default function ExpenseTrackerComponent() {
             historyDummy.push({ id: count, type: "Income", amount: expense })
             //setTxhistory.push({ id: count, type: "Income", amount: expense })
             //setTxhistory(txHistory => [...txHistory, { id: count, type: "Income", amount: expense }])//IMP
+            setTxhistory(txHistory => [...txHistory, historyDummy[0]])//IMP
         }
-        setTxhistory(txHistory => [...txHistory, historyDummy[0]])//IMP
-        console.log("added history = ", historyDummy)
-        console.log("added txhistory= ", txHistory)
+        // setTxhistory(txHistory => [...txHistory, historyDummy[0]])//IMP
+        // console.log("added history = ", historyDummy)
+        // console.log("added txhistory= ", txHistory)
     };
 
     const searchIteamToRemove = (id) => {
-        console.log("txHistory.length ==== ", txHistory.length)
+        // console.log("txHistory.length ==== ", txHistory.length)
         for (let i = 0; i < txHistory.length; i++) {
             if (txHistory[i].id == id) {
-                console.log(txHistory[i])
+                // console.log(txHistory[i])
                 setRemoveArrayIndex(i);
                 return i;
-                // break;
             }
         }
     };
@@ -97,18 +108,17 @@ export default function ExpenseTrackerComponent() {
 
     const handleDelete = (e) => {
         //alert(e.target.id)
-        console.log("id=", e.target.id)
+        // console.log("id=", e.target.id)
         // alert(txHistory[e.target.id])
         //console.log(txHistory[e.target.id])
-        console.log()
-        console.table(txHistory)
+        // console.table(txHistory)
         // const itemToBeRemoved = txHistory[e.target.id]
         const index = searchIteamToRemove(e.target.id)
-        console.log("removeArrayIndex = ", removeArrayIndex)
-        console.log("index = ", index)
-        console.log("item to be removed = ", txHistory[index])
+        // console.log("removeArrayIndex = ", removeArrayIndex)
+        // console.log("index = ", index)
+        // console.log("item to be removed = ", txHistory[index])
         const itemToBeRemoved = txHistory[index]
-        console.table(itemToBeRemoved)
+        // console.table(itemToBeRemoved)
         if (itemToBeRemoved.type === "Expense") {
             setExpenseHeader(expenseHeader - itemToBeRemoved.amount)
             setBalance(balance + Number(itemToBeRemoved.amount))
@@ -120,7 +130,7 @@ export default function ExpenseTrackerComponent() {
 
         txHistory.splice(txHistory.findIndex(a => a.id === itemToBeRemoved.id), 1) //imp stack overflow line
         //setCount(count - 1);
-        console.table(txHistory)
+        // console.table(txHistory)
         //print result
         // console.log(txHistory)
     }
@@ -136,7 +146,7 @@ export default function ExpenseTrackerComponent() {
 
     return (
 
-        <div className="container-fluid border border-dark rounded-end p-4 w-75" style={{ height: "800px" }}>
+        <div className="container-fluid border border-dark rounded-end p-4 w-75 zoom" style={{ height: "800px" }}>
             <div className="row mt-4" style={{ height: "700px" }}>
                 <div className="col-6 border-end">
                     <h3 style={{ textAlign: "center" }}>Expense Tracker</h3>
@@ -144,15 +154,15 @@ export default function ExpenseTrackerComponent() {
                     <span style={{ fontSize: "50px" }}>$ {balance}</span>
                     <br />
                     <span className="mb-4">{count > 0 && `Starting balance is ${initialBalance}`}</span>
-                    <p> <button onClick={takeStartingAmount} className="btn btn-dark w-25">Change Amount</button></p>
+                    <p> <button onClick={takeStartingAmount} className="btn btn-dark w-50" style={{ fontSize: "1rem" }}>Change Amount</button></p>
                     <div className="card-group mt-2">
-                        <div className="card">
+                        <div className="card border">
                             <div className="card-body">
                                 <h5 className="card-title">INCOME</h5>
                                 <p className="card-text" style={{ color: "green", fontSize: "28px" }}>$ {incomeHeader}</p>
                             </div>
                         </div>
-                        <div className="card">
+                        <div className="card border">
                             <div className="card-body">
                                 <h5 className="card-title">EXPENSES</h5>
                                 <p className="card-text" style={{ color: "red", fontSize: "28px" }}>$ {expenseHeader}</p>
@@ -162,7 +172,7 @@ export default function ExpenseTrackerComponent() {
                     <br />
 
                     <br />
-                    <p><strong>Add new transaction</strong></p>
+                    <p><strong>Add New Transaction</strong></p>
                     <hr />
                     <div className="d-grid">
                         <strong>Text</strong>
@@ -179,8 +189,8 @@ export default function ExpenseTrackerComponent() {
                             <input type="text" className="form-control" style={{ height: "50px" }} aria-label="Dollar amount" placeholder="Enter amount" onChange={(e) => setExpense(e.target.value)} name="amount" min="1" />
                         </div>
                         {/* <input type="number" className="form-control" aria-describedby="inputGroup-sizing-lg" placeholder="Enter amount" onChange={(e) => setExpense(e.target.value)} name="amount" min="1" /> */}
-                        <br />
-                        <button className="btn btn-primary mb-4" onClick={handleSubmit}>Add Expense</button>
+                        <p style={{ color: "red" }}>{expenseOverAmountMessage && "Money Exceeded Total"}</p>
+                        <button className="btn btn-primary mb-4 expenseTracker-button" onClick={handleSubmit} style={{ fontSize: "1rem" }}>Add Expense</button>
                     </div>
                 </div>
 
@@ -194,9 +204,9 @@ export default function ExpenseTrackerComponent() {
                             {
                                 count > 0 && txHistory.map((h) =>
                                     <div key={h.id}>{(h.type === "Expense" ? expenseAmount(h.amount) : income(h.amount))}
-                                        <div className="col-md-1">
+                                        <div className="col-md-4">
                                             {/* <button className="btn btn-primary" style={{ width: "32px", height: "32px" }}><i className="bi bi-dash-circle" style={{ float: "right", width: "16px", height: "16px" }}></i></button>  */}
-                                            <button id={h.id} className="btn" onClick={handleDelete}><i className="fa fa-close"></i> Close</button>
+                                            <i id={h.id} className="bi bi-trash delete-expenseRecord" onClick={handleDelete}>Remove</i>
                                         </div>
 
                                     </div>
