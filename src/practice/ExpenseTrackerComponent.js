@@ -4,13 +4,13 @@ import './ExpenseTrackerComponent.css'
 
 function income(amount) {
     return (
-        <div className="card border-success mt-2 rounded-end" style={{ height: "60px" }}>
+        <div className="card border-success mt-2 rounded-end me-3" style={{ height: "60px" }}>
             <div className="card-body ">
                 <div className="row">
-                    <div className="col-md-7">
+                    <div className="col-md-9">
                         <p className="card-title" style={{ fontSize: "20px" }}>INCOME</p>
                     </div>
-                    <div className="col-md-5">
+                    <div className="col-md-2">
                         <p className="card-text pull-right badge" style={{ color: "green", fontSize: "20px", float: "right" }}>$ {amount}</p>
                     </div>
                 </div>
@@ -21,13 +21,13 @@ function income(amount) {
 
 function expenseAmount(amount) {
     return (
-        <div className="card border-danger mt-1 rounded-pill" style={{ height: "60px" }}>
+        <div className="card border-danger mt-1 mb-2 rounded-end me-3" style={{ height: "60px" }}>
             <div className="card-body ">
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-9">
                         <p className="card-title" style={{ fontSize: "20px" }}>EXPENSE</p>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-2">
                         <p className="card-text pull-right badge" style={{ color: "red", fontSize: "20px", float: "right" }}>$ {amount}</p>
                     </div>
                 </div>
@@ -37,9 +37,14 @@ function expenseAmount(amount) {
     // ReactDOM.render(element, document.getElementById('history'));
 }
 export default function ExpenseTrackerComponent() {
+    useEffect(() => {
+        document.body.style.backgroundColor = "white";
+        //takeStartingAmount();
+    }, [])
 
-    const LOCAL_STORAGE_KEY = "transactions";
+    //const LOCAL_STORAGE_KEY = "transactions";
 
+    const [initialBalance, setInitialBalance] = useState(400.00);
     const [balance, setBalance] = useState(400.00);
     const [text, setText] = useState('');
     const [expense, setExpense] = useState();
@@ -47,24 +52,9 @@ export default function ExpenseTrackerComponent() {
     const [expenseHeader, setExpenseHeader] = useState(0)
     const [txHistory, setTxhistory] = useState([])
     const [count, setCount] = useState(0)
+    const [removeArrayIndex, setRemoveArrayIndex] = useState(0);
 
-    useEffect(() => {
-        document.body.style.backgroundColor = "white"
-
-    }, [])
-
-
-    // var flag = false
-
-    //store data in local store and retrive them
-    // useEffect(() => {
-    //     const tx = localStorage.getItem(LOCAL_STORAGE_KEY);
-    //     if (tx) setTxhistory(tx)
-    // }, [])
-
-    // useEffect(() => {
-    //     localStorage.setItem(LOCAL_STORAGE_KEY, txHistory);
-    // }, [txHistory])
+    var historyDummy = []
 
     const handleSubmit = () => {
         // flag = true
@@ -74,7 +64,8 @@ export default function ExpenseTrackerComponent() {
             setBalance(Number(balance) - Number(expense))
             setCount(count + 1);
             //setTxhistory.push({ id: count, type: "Expense", amount: expense })
-            setTxhistory(txHistory => [...txHistory, { id: count, type: "Expense", amount: expense }])//IMP
+            historyDummy.push({ id: count, type: "Expense", amount: expense })
+            // setTxhistory(txHistory => [...txHistory, historyDummy[0]])//IMP
         }
         else if (text.toString() === "Income") {
             //dummy = (income(expense));
@@ -82,18 +73,42 @@ export default function ExpenseTrackerComponent() {
             setIncomeHeader(incomeHeader + Number(expense))
             setBalance(Number(balance) + Number(expense))
             setCount(count + 1);
+            historyDummy.push({ id: count, type: "Income", amount: expense })
             //setTxhistory.push({ id: count, type: "Income", amount: expense })
-            setTxhistory(txHistory => [...txHistory, { id: count, type: "Income", amount: expense }])//IMP
+            //setTxhistory(txHistory => [...txHistory, { id: count, type: "Income", amount: expense }])//IMP
+        }
+        setTxhistory(txHistory => [...txHistory, historyDummy[0]])//IMP
+        console.log("added history = ", historyDummy)
+        console.log("added txhistory= ", txHistory)
+    };
+
+    const searchIteamToRemove = (id) => {
+        console.log("txHistory.length ==== ", txHistory.length)
+        for (let i = 0; i < txHistory.length; i++) {
+            if (txHistory[i].id == id) {
+                console.log(txHistory[i])
+                setRemoveArrayIndex(i);
+                return i;
+                // break;
+            }
         }
     };
 
 
     const handleDelete = (e) => {
         //alert(e.target.id)
+        console.log("id=", e.target.id)
         // alert(txHistory[e.target.id])
-        console.log(txHistory[e.target.id])
-        const itemToBeRemoved = txHistory[e.target.id]
-
+        //console.log(txHistory[e.target.id])
+        console.log()
+        console.table(txHistory)
+        // const itemToBeRemoved = txHistory[e.target.id]
+        const index = searchIteamToRemove(e.target.id)
+        console.log("removeArrayIndex = ", removeArrayIndex)
+        console.log("index = ", index)
+        console.log("item to be removed = ", txHistory[index])
+        const itemToBeRemoved = txHistory[index]
+        console.table(itemToBeRemoved)
         if (itemToBeRemoved.type === "Expense") {
             setExpenseHeader(expenseHeader - itemToBeRemoved.amount)
             setBalance(balance + Number(itemToBeRemoved.amount))
@@ -104,21 +119,32 @@ export default function ExpenseTrackerComponent() {
         }
 
         txHistory.splice(txHistory.findIndex(a => a.id === itemToBeRemoved.id), 1) //imp stack overflow line
-        setCount(count - 1);
+        //setCount(count - 1);
+        console.table(txHistory)
         //print result
         // console.log(txHistory)
     }
 
+
+    const takeStartingAmount = () => {
+        const newAmount = Number(prompt("enter amount"))
+        if (!isNaN(newAmount)) {
+            setInitialBalance(newAmount)
+            setBalance(newAmount)
+        }
+    }
+
     return (
+
         <div className="container-fluid border border-dark rounded-end p-4 w-75" style={{ height: "800px" }}>
-            <div className="row mt-4" style={{ height: "800px" }}>
-                <div className="col-7 border-end">
+            <div className="row mt-4" style={{ height: "700px" }}>
+                <div className="col-6 border-end">
                     <h3 style={{ textAlign: "center" }}>Expense Tracker</h3>
                     <h4>Your Balance</h4>
                     <span style={{ fontSize: "50px" }}>$ {balance}</span>
                     <br />
-                    <sub>{count > 0 && "Starting balance is 400"}</sub>
-
+                    <span className="mb-4">{count > 0 && `Starting balance is ${initialBalance}`}</span>
+                    <p> <button onClick={takeStartingAmount} className="btn btn-dark w-25">Change Amount</button></p>
                     <div className="card-group mt-2">
                         <div className="card">
                             <div className="card-body">
@@ -158,13 +184,13 @@ export default function ExpenseTrackerComponent() {
                     </div>
                 </div>
 
-                <div className="col-4 " >
+                <div className="col-4 overflow-auto ms-4" style={{ height: "700px" }}>
                     <p><strong>History</strong></p>
                     <hr />
-                    <div className=" d-grid px-md-5" style={{ height: "650px", width: "480px" }} id="history">
+                    <div className=" d-grid px-md-6" style={{ height: "600px", width: "350px" }} id="history">
                         {/* {income(900)}
                             {expenseAmount(600)} */}
-                        <div className="overflow-auto p-3">
+                        <div className="overflow-auto">
                             {
                                 count > 0 && txHistory.map((h) =>
                                     <div key={h.id}>{(h.type === "Expense" ? expenseAmount(h.amount) : income(h.amount))}

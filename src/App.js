@@ -18,10 +18,14 @@ function App() {
   const userPicture = "/Nikhil picture.jpg"
   return (
     <div className="container-fluid w-75 resume-block p-4 mb-4 " >
-      <div className="card border-0" >
+      <div className="card border-0 " >
         <div style={{ overflow: "hidden" }}>
-          <img src={userPicture} alt="User" style={{ padding: "20px", marginLeft: "20px", height: "250px", width: "180px", float: "left" }} />
-          <h5 className="name p-2" style={{ float: "right", display: "block" }} >Velakurthy Nikhil</h5>
+          <img src={userPicture} alt="User" style={{ padding: "20px", marginLeft: "20px", height: "250px", width: "250px", float: "left" }} />
+          <div className="name p-2 designation-block" style={{ float: "right", display: "block" }}>
+            <h1>Velakurthy Nikhil</h1>
+            <p className="designation">Associate Engineer - Technology</p>
+            <h5>VIRTUSA CONSULTING SERVICES PRIVATE LIMITED</h5>
+          </div>
         </div>
         <div className="card-body border-0" >
 
@@ -100,7 +104,7 @@ function App() {
                   <p className="card-body">
                     <dl>
                       <dt>Environment:</dt>
-                      <dd>Java 1.8, STS, Gitlab 7.0, Oracle 11g, SQL, HTML5, CSS3, JavaScript, Restful,
+                      <dd className="spacing">Java 1.8, STS, Gitlab 7.0, Oracle 11g, SQL, HTML5, CSS3, JavaScript, Restful,
                         JSON,  JUnit 5, Spring 4.2, Spring Boot, Spring JPA, Hibernate 4, Log4j,Lombok, Tomcat.
                       </dd>
                     </dl>

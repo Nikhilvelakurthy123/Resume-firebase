@@ -9,6 +9,7 @@
 .resume-block{
   margin-top: 2.5%;
   background-color: #ffffff;
+  border-radius: 12px;
 }
 
 .float-right{
@@ -24,6 +25,7 @@
 
 .card-title{
   color: #000000;
+  font-size: x-large;
 }
 
 .a{
@@ -33,4 +35,20 @@
 .card-img, .card-img-top, .card-img-bottom {
   width: 50%;
   height: 200px;
+}
+
+.list-group-item, .spacing{
+  text-align:justify;
+  font-size: 18px;
+  
+}
+
+.designation-block{
+  align-content: center;
+  text-align: right;
+  margin-top: 1.5rem;
+}
+
+.designation{
+  font-size: 24px;
 }

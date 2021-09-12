@@ -1,3 +1,20 @@
 /* .body-color{
     background-color: white;
 } */
+
+.card, .card-body {
+     background-color: transparent;
+     /* border: 0px solid ; */
+     /* height: 0px; */
+}
+
+.btn {
+    font-size: inherit;
+}
+
+.col-6.border-end{
+ height: 90% ;
+ /* margin-top: 50%; */
+ /* al: center; */
+ /* align-self: center; */
+}
