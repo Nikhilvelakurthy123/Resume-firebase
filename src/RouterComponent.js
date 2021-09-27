@@ -1,10 +1,11 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import App from './App.js'
 import ExpenseTrackerComponent from './practice/ExpenseTrackerComponent'
 import CalcComponent from './practice/CalculatorComponent'
 import TictactoeComponent from './practice/TictactoeComponent'
 // import WeatherIndexComponent from './weatherapp/WeatherIndexComponent.js'
+import ContactsComponent from './ContactsComponents/ContactsComponent'
 
 export default function RouterComponent() {
     return (
@@ -24,6 +25,14 @@ export default function RouterComponent() {
                         <TictactoeComponent />
                     </Route>
                     {/* <Route exact path="/weatherapp"><WeatherIndexComponent /></Route> */}
+                    <Route exact path="/ContactsComponent">
+                        <ContactsComponent />
+                    </Route>
+                    <Route exact path="*">
+                        <Redirect>
+                            <App />
+                        </Redirect>
+                    </Route>
                 </Switch>
             </Router>
         </div>
