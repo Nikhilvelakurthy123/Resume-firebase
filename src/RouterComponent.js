@@ -6,6 +6,7 @@ import CalcComponent from './practice/CalculatorComponent'
 import TictactoeComponent from './practice/TictactoeComponent'
 // import WeatherIndexComponent from './weatherapp/WeatherIndexComponent.js'
 import ContactsComponent from './ContactsComponents/ContactsComponent'
+import ShoppingHomeComponent from './ShoppingAPI/Components/ShoppingHomeComponent.js'
 
 export default function RouterComponent() {
     return (
@@ -25,6 +26,9 @@ export default function RouterComponent() {
                         <TictactoeComponent />
                     </Route>
                     {/* <Route exact path="/weatherapp"><WeatherIndexComponent /></Route> */}
+                    <Route exact path="/shopping/">
+                        <ShoppingHomeComponent />
+                    </Route>
                     <Route exact path="/ContactsComponent">
                         <ContactsComponent />
                     </Route>
