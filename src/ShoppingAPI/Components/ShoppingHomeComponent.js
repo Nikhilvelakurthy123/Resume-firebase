@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import CounterComponent from "../../practice/CounterComponent";
 import HeaderComponent from "./HeaderComponent";
 
 import ShoppingHome from "./ShoppingHome";
@@ -10,8 +11,11 @@ function ShoppingHomeComponent() {
             <Router>
                 <HeaderComponent />
                 <Switch>
-                    <Route exact path="/shopping">
+                    <Route exact path="/shopping/">
                         <ShoppingHome />
+                    </Route>
+                    <Route exact path="/shopping/Counter">
+                        <CounterComponent />
                     </Route>
                 </Switch>
             </Router>
