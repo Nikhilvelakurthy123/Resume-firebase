@@ -32,11 +32,11 @@ export default function RouterComponent() {
                     <Route exact path="/ContactsComponent">
                         <ContactsComponent />
                     </Route>
-                    {/* <Route exact path="*">
+                    <Route exact path="*">
                         <Redirect>
                             <App />
                         </Redirect>
-                    </Route> */}
+                    </Route>
                 </Switch>
             </Router>
         </div>

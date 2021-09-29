@@ -1,5 +1,6 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import App from "../../App";
 import CounterComponent from "../../practice/CounterComponent";
 import HeaderComponent from "./HeaderComponent";
 
