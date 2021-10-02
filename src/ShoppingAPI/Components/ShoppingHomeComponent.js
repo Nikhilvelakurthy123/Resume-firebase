@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import App from "../../App";
+import CountDownComponent from "../../practice/CountDownComponent";
 import CounterComponent from "../../practice/CounterComponent";
 import HeaderComponent from "./HeaderComponent";
 
@@ -17,6 +17,9 @@ function ShoppingHomeComponent() {
                     </Route>
                     <Route exact path="/shopping/Counter">
                         <CounterComponent />
+                    </Route>
+                    <Route exact path="/shopping/countdown">
+                        <CountDownComponent />
                     </Route>
                 </Switch>
             </Router>

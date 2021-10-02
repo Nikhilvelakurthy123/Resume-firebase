@@ -18,8 +18,8 @@ export default function CategoriesComponent() {
             <ul className="list-group position-relative w-100">
                 <li className="nav-link list-group-item"><button className="btn btn-primary  font-size-1rem" value="All">All</button></li>
                 {
-                    categories.map(p =>
-                        <li className="nav-link list-group-item"><button className="btn btn-primary font-size-1rem" value={p}>{p.toUpperCase()}</button></li>
+                    categories.map((p, index) =>
+                        <li key={index} className="nav-link list-group-item"><button className="btn btn-primary font-size-1rem" value={p}>{p.toUpperCase()}</button></li>
                     )
                 }
             </ul>
