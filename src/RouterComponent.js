@@ -7,6 +7,7 @@ import TictactoeComponent from './practice/TictactoeComponent'
 // import WeatherIndexComponent from './weatherapp/WeatherIndexComponent.js'
 import ContactsComponent from './ContactsComponents/ContactsComponent'
 import ShoppingHomeComponent from './ShoppingAPI/Components/ShoppingHomeComponent.js'
+// import RandomUserComponent from './Random User API/RandomUserComponent.js'
 
 export default function RouterComponent() {
     return (
@@ -32,6 +33,11 @@ export default function RouterComponent() {
                     <Route exact path="/ContactsComponent">
                         <ContactsComponent />
                     </Route>
+                    {/* <Route exact path="/RandomUserComponent">
+                        <RandomUserComponent />
+                    </Route> */}
+
+
                     <Route exact path="*">
                         <Redirect>
                             <App />

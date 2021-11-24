@@ -29,6 +29,9 @@ function HeaderComponent() {
                         <li className="nav-item active">
                             <Link className="nav-link text-dark" to="/shopping/countdown"><b>Countdown Component</b></Link>
                         </li>
+                        <li className="nav-item active">
+                            <Link className="nav-link text-dark" to="/shopping/RandomUserComponent"><b>RandomUserComponent</b></Link>
+                        </li>
                         {/* <li className="nav-item">
                             <a className="nav-link" href="#">Link</a>
                         </li>
