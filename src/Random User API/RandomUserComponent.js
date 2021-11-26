@@ -7,77 +7,71 @@ export default class RandomUserComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            randomUser: [],
+            randomUser: {},
             keys: []
         }
         this.getUser = this.getUser.bind(this)
+        this.displayData = this.displayData.bind(this)
     }
     //https://randomuser.me/api/
 
-    componentWillMount() {
+    componentDidMount() {
         document.body.style.backgroundColor = "#282c34"
-
+        console.log("RANDOM USER COMPONENT")
         this.getUser();
     }
 
     getUser() {
-        let Jsonkeys = []
         console.log("user is called")
+        let Jsonkeys = []
         axios.get('https://randomuser.me/api/')
-            .then(resp => {
-                Object.keys(resp.data.results[0]).forEach(function (key) {
-                    var value = resp.data.results[0][key];
-                    console.log(value)
-                    Jsonkeys.push(value)
-                })
+            .then(res => {
+                Object.keys(res.data.results[0]).flatMap(i => Jsonkeys.push(i));
                 this.setState({
-                    randomUser: (resp.data.results[0]),
+                    randomUser: (res.data.results[0]),
                     keys: Jsonkeys
                 });
-                console.log(resp.data.results[0]);
-                console.table(Jsonkeys)
             })
             .catch(err => {
                 // Handle Error Here
                 console.error(err);
             });
+
+    }
+
+    displayData() {
+        // console.log("DATA")
+        let dataToDisplay = "";
+        return Object.values(this.state.randomUser).map((item, i) => {
+            console.log(item);
+            <>
+                <dt>Name :</dt>
+                <dd>{item}</dd>
+                <dt>Gender :</dt>
+                <dd>{i}</dd>
+            </>
+        })
+        // return dataToDisplay;//JSON.stringify(this.state.randomUser, undefined, 5);
     }
 
     render() {
-        console.log(JSON.parse(this.state.randomUser['name'])['title'])
-
         return (
             <div className="container-fluid w-75 randomuser-block p-4 mb-4">
-                <div className="card border-0 " >
-                    <h1>Welcome Back</h1>
-                    <datalist>
-                        {
-                            this.state.randomUser &&
-                            <><dt>Name :</dt>
-                                <dd>{this.state.randomUser['name']['title']}</dd>
-                                <dt>Gender :</dt>
-                                <dd>{this.state.randomUser['gender']}</dd>
-                                <dt>Name :</dt>
-                                <dd>{this.state.randomUser['name'][2] + " " + this.state.randomUser['name']['first'] + " " + this.state.randomUser['name']['last']}</dd>
-                                <dt>Location :</dt>
-                                <dd>{this.state.randomUser['location']['country']}</dd>
-                                <dt>Email :</dt>
-                                <dd>{this.state.randomUser['email']}</dd>
-                                <dt>User Name :</dt>
-                                <dd>{this.state.randomUser['login']['username']}</dd>
-                                <dt>Password :</dt>
-                                <dd>{this.state.randomUser['login']['password']}</dd>
-                                <dt>DOB :</dt>
-                                <dd>{this.state.randomUser['dob']['date']}</dd>
-                                <dt>Age :</dt>
-                                <dd>{this.state.randomUser['dob']['age']}</dd>
-                                <dt>registered :</dt>
-                                <dd>{this.state.randomUser['registered']['date']}</dd>
-                                <dd>{this.state.randomUser['registered']['age']}</dd> </>
-                        }
-                    </datalist>
+                <h1>Welcome Back</h1>
+                <code>{this.state.randomUser && this.displayData()}</code>
 
-                </div>
+                <dl>
+
+                    {
+                        this.state.randomUser && (
+                            Object.values(this.state.randomUser).map((item, i) => <><dt key={i}>{this.state.keys[i]}</dt>
+                                <dd key={this.state.keys[i]}>
+                                    {/* {Object.values(item).map((sub, k) => <>{sub}</>)} */}
+                                    {JSON.stringify(item).replaceAll(":", " - ").replaceAll(/,|{|}|\"/g, " ")}
+                                </dd></>)
+                        )
+                    }
+                </dl>
             </div>
         )
     }
