@@ -58,6 +58,7 @@ export default class RandomUserComponent extends React.Component {
         return (
             <div className="container-fluid w-75 randomuser-block p-4 mb-4">
                 <h1>Welcome Back</h1>
+                <p>Description: Random API is the API that generates the Random users for each page load.</p>
                 <code>{this.state.randomUser && this.displayData()}</code>
 
                 <dl>

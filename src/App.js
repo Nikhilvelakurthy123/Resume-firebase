@@ -176,6 +176,7 @@ function App() {
                     <li><Link to="/calc" className="a">Calculator</Link></li>
                     <li><Link to="/TictactoeComponent" className="a">Tictactoe</Link></li>
                     <li><Link to="/shopping/" className="a">Shopping Component [Shopping API data is displayed]</Link></li>
+                    <li><Link to="/currencyConverter" className="a">Currency Converter</Link></li>
                     {/* <li><Link to="/weatherapp" className="a">Weather App</Link></li> */}
                   </ul>
                 </div>
